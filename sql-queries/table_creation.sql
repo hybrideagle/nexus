@@ -31,7 +31,7 @@ create table section(
 	semester varchar,
 	in_id varchar,
 	primary key(dep_id,sec_id),
-	foreign key(dep_id) references department,
+	foreign key(dep_id) references department on delete cascade,
 	foreign key(in_id) references instructor
 );
 

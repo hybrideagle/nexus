@@ -8,6 +8,8 @@ import FlatButton from 'material-ui/FlatButton';
 import DockedDrawer from './docked-drawer'
 import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 let Student = (props) => {
   return (
@@ -32,12 +34,14 @@ let temp_data = {name:"Blargh",age:15};
 class StudentDetails extends Component {
   render() {
     let cards = this.props.studentData.data.map(data => <Student data={data}/>);
-    return (<div>
-              <Paper zDepth={2}>
-                <DockedDrawer />
-                  {cards}
-              </Paper>
-            </div>);
+    return (<MuiThemeProvider>
+              <div>
+                <Paper zDepth={2}>
+                  <DockedDrawer />
+                    {cards}
+                </Paper>
+              </div>
+            </MuiThemeProvider>);
   }
 }
 
