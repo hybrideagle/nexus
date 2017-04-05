@@ -87,3 +87,11 @@ ORDER BY
 
 -- 11)All recurring classes of a course that the instructor does not teach but is
 -- offered by his department, that don't conflict with his schedule.
+
+-- 12)Number of students that each instructor advises
+
+-- 13)Instructors that advise students not in their first year.
+
+-- 14)All courses without any prerequisites
+
+-- 15)Recurring classes having one-off classes

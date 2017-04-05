@@ -13,15 +13,15 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 let Student = (props) => {
   return (
-  <div>
+  <div style={{width:"80%",margin:"0 auto",textAlign:"center",marginBottom:"5%",marginTop:"5%"}}>
         <Card>
             <CardText>
               <div style={{display:"inline-block"}}>
-              <Avatar />
+                <Avatar />
               </div>
               <div style={{display:"inline-block","marginLeft":"5%"}}>
-              <div>Name:{props.data.name}</div>
-              <div>Age:{props.data.age}</div>
+                <div>Name:{props.data.name}</div>
+                <div>Age:{props.data.age}</div>
               </div>
             </CardText>
         </Card>
@@ -29,15 +29,12 @@ let Student = (props) => {
     );
 };
 
-let temp_data = {name:"Blargh",age:15};
-
 class StudentDetails extends Component {
   render() {
     let cards = this.props.studentData.data.map(data => <Student data={data}/>);
     return (<MuiThemeProvider>
               <div>
                 <Paper zDepth={2}>
-                  <DockedDrawer />
                     {cards}
                 </Paper>
               </div>
