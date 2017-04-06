@@ -13,7 +13,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 let Student = (props) => {
   return (
-  <div style={{width:"80%",margin:"0 auto",textAlign:"center",marginBottom:"5%",marginTop:"5%"}}>
+  <div style={{width:"60%",margin:"0 auto",textAlign:"center"}}>
         <Card>
             <CardText>
               <div style={{display:"inline-block"}}>
@@ -31,7 +31,7 @@ let Student = (props) => {
 
 class StudentDetails extends Component {
   render() {
-    let cards = this.props.studentData.data.map(data => <Student data={data}/>);
+    let cards = this.props.studentData.data.map((data) => <Student data={data}/>);
     return (<MuiThemeProvider>
               <div>
                 <Paper zDepth={2}>

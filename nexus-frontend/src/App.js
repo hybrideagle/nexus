@@ -6,7 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DockedDrawer from './docked-drawer';
 import StudentDetails from './student-details';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {HashRouter,Route,Link} from 'react-router-dom'
+import {BrowserRouter,Route,Link} from 'react-router-dom'
 import StudentDetailsPage from './student-details-page'
 // Needed for onTouchTap
 
@@ -16,9 +16,9 @@ injectTapEventPlugin();
 class App extends Component {
   render() {
     return (
-      <HashRouter>
-        <Route path="/" component = {StudentDetailsPage} />
-      </HashRouter>
+      <BrowserRouter>
+        <Route path="/student" component = {StudentDetailsPage} />
+      </BrowserRouter>
     );
   }
 }
