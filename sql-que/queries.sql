@@ -1,29 +1,28 @@
-
+\c calender;
 -- 1)All students, the department and section they belong to, and their advisor's
 -- name.
 
 SELECT
   student.name,department.dep_name,section.sec_id,instructor.name
 FROM
-  department INNER JOIN student using(dep_id) INNER JOIN student using (sec_id) INNER JOIN instructor on(student.adv_id=instructor.in_id);
+  department INNER JOIN student using(dep_id) INNER JOIN section using (sec_id) INNER JOIN instructor on(student.adv_id=instructor.in_id) limit 10;
 
 -- 2)All the sections with student counts.
 
 SELECT
-  department.dep_id,section.sec_id, count(*)
+  section.sec_id, count(*)
 FROM
   department INNER JOIN section using (dep_id) INNER JOIN student using (sec_id)
-GROUP BY
-  sec_id;
+GROUP BY sec_id;
 
 
 -- 3)All one-time classes taken by students from multiple sections
 
 SELECT
-  c.name, c.id as c1, c.id as c2
+  c.c_id as c1, c.c_id as c2
 FROM
   class_once INNER JOIN takes_class_once tc using (c_id)
-   INNER JOIN class_once c on c.c_id = tc.c_id and c.day = tc.day and c.at_time=tc.at_time and c.l_id=tc.l_id;
+   INNER JOIN class_once c on c.c_id = tc.c_id and c.on_date = tc.on_date and c.at_time=tc.at_time and c.l_id=tc.l_id;
 
 -- 4)All courses in reverse order of the number of people that take them.
 
@@ -63,7 +62,7 @@ SELECT
 FROM
   class_once INNER JOIN course using (c_id) INNER JOIN student using (c_id)
 WHERE
-  usn = "some/usn/here"
+  usn like '01FB15ECS309'
 ORDER BY
   day,at_time;
 
@@ -75,23 +74,17 @@ SELECT
 FROM
   class_once INNER JOIN course using (c_id) INNER JOIN instructor using (c_id)
 WHERE
-  usn = "some/usn/here"
+  usn like '01FB15ECS315'
 ORDER BY
   day,at_time;
 
 
 -- 9)All courses a student is qualified to take.
 
+
+
 -- 10)All recurring classes of a course that the instructor already teaches, that
 -- don't conflict with his schedule(so he can fill up his schedule).
 
 -- 11)All recurring classes of a course that the instructor does not teach but is
 -- offered by his department, that don't conflict with his schedule.
-
--- 12)Number of students that each instructor advises
-
--- 13)Instructors that advise students not in their first year.
-
--- 14)All courses without any prerequisites
-
--- 15)Recurring classes having one-off classes

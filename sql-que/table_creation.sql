@@ -31,7 +31,7 @@ create table section(
 	semester varchar,
 	in_id varchar,
 	primary key(dep_id,sec_id),
-	foreign key(dep_id) references department on delete cascade,
+	foreign key(dep_id) references department,
 	foreign key(in_id) references instructor
 );
 
@@ -74,8 +74,8 @@ create table takes_course(
 
 create table class_once(
 	c_id varchar,
-	on_date varchar,
-	at_time time,
+	on_date varchar default '1',
+	at_time varchar,
 	l_id varchar,
 	i_id varchar,
 	primary key(on_date,at_time,l_id),
@@ -87,7 +87,7 @@ create table takes_class_once(
 	usn varchar,
 	c_id varchar,
 	on_date varchar,
-	at_time time,
+	at_time varchar,
 	l_id varchar,
 	primary key(usn,c_id,on_date,at_time,l_id),
 	foreign key(usn) references student,
@@ -97,7 +97,7 @@ create table takes_class_once(
 create table class_recurring(
 	c_id varchar,
 	on_day varchar,
-	at_time time,
+	at_time varchar,
 	l_id varchar,
 	i_id varchar,
 	primary key(on_day,at_time,l_id),
@@ -109,7 +109,7 @@ create table takes_class_recurring(
 	usn varchar,
 	c_id varchar,
 	on_day varchar,
-	at_time time,
+	at_time varchar,
 	l_id varchar,
 	primary key(usn,c_id,on_day,at_time,l_id),
 	foreign key(usn) references student,
