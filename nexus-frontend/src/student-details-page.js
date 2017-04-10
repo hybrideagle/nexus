@@ -24,10 +24,10 @@ export default () => (
     <div style={{marginLeft:"200px"}} >
     <TopBar />
     </div>
-    <LeftNav width="200px"/>
+    <LeftNav width="200px" open={false}/>
     <div style={{marginLeft:"250px"}}>
       <StudentCard />
-      <StudentDetails studentData={temp_data} />
+      <StudentDetails studentData={temp_data}/>
     </div>
   </div>
   </MuiThemeProvider>);
