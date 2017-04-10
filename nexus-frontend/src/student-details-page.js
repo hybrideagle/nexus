@@ -16,7 +16,14 @@ let temp_data = {
     age:"asasd"
   }]};
 
-let StudentCard = () => <MuiThemeProvider><div style={{width:"50%",margin:"0 auto",textAlign:"center"}}><Paper zDepth={2}><h1>Students</h1></Paper></div></MuiThemeProvider>;
+let StudentCard = () =>
+(<MuiThemeProvider>
+  <div style={{width:"50%",margin:"0 auto",textAlign:"center"}}>
+    <Paper zDepth={2}>
+      <h1>Students</h1>
+    </Paper>
+  </div>
+</MuiThemeProvider>);
 
 export default () => (
   <MuiThemeProvider>
