@@ -33,4 +33,6 @@ app.use(compress())
   .configure(services)
   .configure(middleware);
 
+app.listen(3000);
+
 module.exports = app;

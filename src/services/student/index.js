@@ -15,7 +15,7 @@ class Service {
 
   get(id, params) {
     return Promise.resolve({
-      id, text: `A new message with ID: ${id}!`
+      id,db.from("student").where('usn', 'ilike',$id).select();
     });
   }
 
@@ -23,8 +23,22 @@ class Service {
     if(Array.isArray(data)) {
       return Promise.all(data.map(current => this.create(current)));
     }
-
-    return Promise.resolve(data);
+    return Promise.all([
+      function(){
+        return knex("student").insert(
+            {
+             usn:"$data[0]",
+             name:"$data[1]",
+             adv_id:"$data[2]",
+             doa:"$data[3]",
+             dob:"$data[4]",
+             gender:"$data[5]",
+             dep_id:"$data[6]",
+             sec_id:"$data[7]"
+            }
+        );
+      }
+    ]);
   }
 
   update(id, data, params) {
