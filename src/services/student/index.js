@@ -38,6 +38,14 @@ class Service {
       }
     ]);
   }
+  
+  get_all_classes(id){
+     //get all classes that id=usn is attending from class_recurring
+  }
+
+  get_all_worshops(id){
+      //get all classes that id=usn is attending from class_once
+  }
 
   update(id, data, params) {
     return Promise.resolve(data);
