@@ -1,8 +1,6 @@
 'use strict';
 
 const hooks = require('./hooks');
-const conn_arr = {client:'pg',connection:'postgres://postgres@localhost/calender'}
-const db = knex(conn_arr);
 
 class Service {
   constructor(options) {
@@ -10,7 +8,7 @@ class Service {
   }
 
   find(params) {
-    return db.from("student").select();
+    return Promise.resolve([]);
   }
 
   get(id, params) {
@@ -44,16 +42,16 @@ module.exports = function(){
   const app = this;
 
   // Initialize our service with any options it requires
-  app.use('/students', new Service());
+  app.use('/instructors', new Service());
 
   // Get our initialize service to that we can bind hooks
-  const studentService = app.service('/students');
+  const instructorService = app.service('/instructors');
 
   // Set up our before hooks
-  studentService.before(hooks.before);
+  instructorService.before(hooks.before);
 
   // Set up our after hooks
-  studentService.after(hooks.after);
+  instructorService.after(hooks.after);
 };
 
 module.exports.Service = Service;

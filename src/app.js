@@ -16,13 +16,6 @@ const services = require('./services');
 
 const knex = require("knex");
 
-const connection_string={
-  connection:'pg'
-//todo
-}
-
-//create the connection
-
 const app = feathers();
 
 app.configure(configuration(path.join(__dirname, '..')));

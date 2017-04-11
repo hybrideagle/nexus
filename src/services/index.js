@@ -1,4 +1,7 @@
 'use strict';
+const instructorClasses = require('./instructor-classes');
+const studentClasses = require('./student-classes');
+const instructor = require('./instructor');
 const student = require('./student');
 const authentication = require('./authentication');
 const user = require('./user');
@@ -16,4 +19,7 @@ module.exports = function() {
   app.configure(authentication);
   app.configure(user);
   app.configure(student);
+  app.configure(instructor);
+  app.configure(studentClasses);
+  app.configure(instructorClasses);
 };
