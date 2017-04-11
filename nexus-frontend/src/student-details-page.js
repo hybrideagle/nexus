@@ -6,12 +6,15 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LeftNav from './left-nav'
 let temp_data = {
   data:[{
+    id:1,
     name:"asd",
     age:"asasd"
   },{
+    id:2,
     name:"asd",
     age:"asasd"
   },{
+    id:3,
     name:"asd",
     age:"asasd"
   }]};
@@ -26,19 +29,25 @@ let StudentCard = () =>
 </MuiThemeProvider>);
 
 class StudentDetailsPage extends Component {
-  componentDidMount(){
-    const studentService = this.props.app.service('student');
+  constructor(props){
+    super(props);
+    this.state ={data:temp_data};
   }
-
+  componentDidMount() {
+    let app = this.props.app;
+    const studentService = app.service('students');
+    studentService.find().then(page => this.setState({ data: page.data }));
+  }
+ 
   render() {
     return (
     <MuiThemeProvider>
-      <div>
-        <div style={{marginLeft:"200px"}} >
+      <div style={{width:"80%",marginLeft:"20%"}}>
+        <div>
         <TopBar />
         </div>
-        <LeftNav width="200px" open={false}/>
-        <div style={{marginLeft:"250px"}}>
+        <LeftNav width="20%" open={true}/>
+        <div>
           <StudentCard />
           <StudentDetails studentData={this.state.data}/>
         </div>

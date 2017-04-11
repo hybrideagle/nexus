@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import RaisedButton from 'material-ui/RaisedButton';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import DockedDrawer from './docked-drawer'
@@ -31,7 +29,7 @@ let Student = (props) => {
 
 class StudentDetails extends Component {
   render() {
-    let cards = this.props.studentData.data.map((data) => <Student data={data}/>);
+    let cards = this.props.studentData.data.map((data) => <Student data={data} key={data.id}/>);
     return (<MuiThemeProvider>
               <div>
                 <Paper zDepth={2}>

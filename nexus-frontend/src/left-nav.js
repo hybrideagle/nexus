@@ -1,14 +1,15 @@
 import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-
+import {Link} from 'react-router-dom';
 export default (props) => {
     return (
       <div>
         <Drawer open={props.open} width={+(props.width)}>
-          <MenuItem>Menu Item</MenuItem>
-          <MenuItem>Menu Item 2</MenuItem>
+          <Link to="/"><MenuItem>Home</MenuItem></Link>
+          <Link to="/students"><MenuItem>Students</MenuItem></Link>
+          <Link to="/instructors"><MenuItem>Instructors</MenuItem></Link>
+          <Link to="/departments"><MenuItem>Departments</MenuItem></Link>
         </Drawer>
       </div>
     );

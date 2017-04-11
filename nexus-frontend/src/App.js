@@ -1,30 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component,cloneElement,createClass} from 'react';
 import './App.css';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import RaisedButton from 'material-ui/RaisedButton';
-import DockedDrawer from './docked-drawer';
-import StudentDetails from './student-details';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {BrowserRouter,Route,Link} from 'react-router-dom';
+import {BrowserRouter,Route} from 'react-router-dom';
 import StudentDetailsPage from './student-details-page';
-import feathers from 'feathers-client';
+import InstructorDetailsPage from './instructor-details-page';
+import feathers,{rest} from 'feathers-client';
 import HomePage from './home-page';
-import io from "socket.io"
+//import rest from 'feathers-rest';
 // Needed for onTouchTap
-
+import superagent from 'superagent';
 injectTapEventPlugin();
 
-var app = feathers();
+console.log("app");
+
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.app = feathers().configure(rest("http://192.168.43.84:3000").superagent(superagent));
+    console.log("skkfnlsd",this.app);
+  }
   render() {
+    let StudentDetailsPageWrapper = (props) => <StudentDetailsPage app={this.app}/>;
+    let InstructorDetailsPageWrapper = (props) => <InstructorDetailsPage app={this.app}/>;
     return (
       <BrowserRouter>
         <div>
-          <Route path="/students" component={StudentDetailsPage} client={feathers} app={app}/>
-          <Route path="/instructors" component={StudentDetailsPage} client={feathers} app={app}/>
-          <Route path="/" match={"exact"} component={HomePage} client={feathers} app={app}/>
+          <Route path="/students" component={StudentDetailsPageWrapper}/>
+          <Route path="/instructors" component={InstructorDetailsPageWrapper}/>
+          <Route exact path="/" component={HomePage}/>
         </div>
       </BrowserRouter>
     );
