@@ -3,6 +3,7 @@
 const hooks = require('./hooks');
 const conn_arr = {client:'pg',connection:'postgres://postgres@localhost/calender'}
 const db = knex(conn_arr);
+var pg = require('knex')({client: 'pg',connection:'postgres://postgres@localhost/calender'});
 
 class Service {
   constructor(options) {
@@ -15,26 +16,23 @@ class Service {
 
   get(id, params) {
     return Promise.resolve({
-      id,db.from("student").where('usn', 'ilike',$id).select();
+      id,db.from("student").where('usn', 'ilike',id).select();
     });
   }
 
   create(data, params) {
-    if(Array.isArray(data)) {
-      return Promise.all(data.map(current => this.create(current)));
-    }
     return Promise.all([
       function(){
-        return knex("student").insert(
+        return pg("student").insert(
             {
-             usn:"$data[0]",
-             name:"$data[1]",
-             adv_id:"$data[2]",
-             doa:"$data[3]",
-             dob:"$data[4]",
-             gender:"$data[5]",
-             dep_id:"$data[6]",
-             sec_id:"$data[7]"
+             usn:data["usn"],
+             name:data["name"],
+             adv_id:data["adv_id"],
+             doa:data["doa"],
+             dob:data["dob"],
+             gender:data["gender"],
+             dep_id:data["dep_id"],
+             sec_id:data["sec_id"]
             }
         );
       }
