@@ -24,19 +24,25 @@ let StudentCard = () =>
     </Paper>
   </div>
 </MuiThemeProvider>);
+
 class StudentDetailsPage extends Component {
+  componentDidMount(){
+    const studentService = this.props.app.service('student');
+  }
+
   render() {
-    return (<MuiThemeProvider>
-    <div>
-      <div style={{marginLeft:"200px"}} >
-      <TopBar />
+    return (
+    <MuiThemeProvider>
+      <div>
+        <div style={{marginLeft:"200px"}} >
+        <TopBar />
+        </div>
+        <LeftNav width="200px" open={false}/>
+        <div style={{marginLeft:"250px"}}>
+          <StudentCard />
+          <StudentDetails studentData={this.state.data}/>
+        </div>
       </div>
-      <LeftNav width="200px" open={false}/>
-      <div style={{marginLeft:"250px"}}>
-        <StudentCard />
-        <StudentDetails studentData={temp_data}/>
-      </div>
-    </div>
     </MuiThemeProvider>);
   }
 }

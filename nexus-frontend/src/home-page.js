@@ -18,25 +18,24 @@ let temp_data = {
   }]};
 
 let StudentCard = () =>
-(<MuiThemeProvider>
-  <div style={{width:"50%",margin:"0 auto",textAlign:"center"}}>
+(  <div style={{width:"50%",margin:"0 auto",textAlign:"center"}}>
     <Paper zDepth={2}>
       <h1>Students</h1>
     </Paper>
   </div>
-</MuiThemeProvider>);
+);
 
 export default () => (
   <MuiThemeProvider>
-  <div>
-    <div style={{marginLeft:"200px"}} >
-    <TopBar />
+    <div style={{marginLeft:"20%",width:'75%'}}>
+      <div>
+      <TopBar />
+      </div>
+      <LeftNav width="20%" open={true}/>
+      <div>
+        <StudentCard />
+        <StudentDetails studentData={temp_data}/>
+      </div>
     </div>
-    <LeftNav width="200px" open={false}/>
-    <div style={{marginLeft:"250px"}}>
-      <StudentCard />
-      <StudentDetails studentData={temp_data}/>
-    </div>
-  </div>
   </MuiThemeProvider>
 );

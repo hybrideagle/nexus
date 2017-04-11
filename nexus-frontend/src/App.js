@@ -8,22 +8,23 @@ import StudentDetails from './student-details';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {BrowserRouter,Route,Link} from 'react-router-dom';
 import StudentDetailsPage from './student-details-page';
-import feathers_client from 'feathers-client';
+import feathers from 'feathers-client';
 import HomePage from './home-page';
+import io from "socket.io"
 // Needed for onTouchTap
 
 injectTapEventPlugin();
 
-var feathers = feathers_client();
+var app = feathers();
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div>
-          <Route path="/students" component = {StudentDetailsPage} client={feathers}/>
-          <Route path="/instructors" component = {StudentDetailsPage} client={feathers}/>
-          <Route path="*" component = {HomePage} client={feathers}/>
+          <Route path="/students" component={StudentDetailsPage} client={feathers} app={app}/>
+          <Route path="/instructors" component={StudentDetailsPage} client={feathers} app={app}/>
+          <Route path="/" match={"exact"} component={HomePage} client={feathers} app={app}/>
         </div>
       </BrowserRouter>
     );
