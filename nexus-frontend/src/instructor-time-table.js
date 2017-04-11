@@ -34,7 +34,7 @@ class InstructorDetailsPage extends Component {
   componentDidMount() {
     let app = this.props.app;
     const instructorService = app.service('instructors');
-    instructorService.get_all_classes(this.props.id).then(page => this.setState({ data: page.data }));
+    //instructorService.get_all_classes(this.props.id).then(page => this.setState({ data: page.data }));
   }
 
   render() {

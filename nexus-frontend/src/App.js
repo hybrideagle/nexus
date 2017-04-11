@@ -10,12 +10,13 @@ import timeTable from './home-page';
 import StudentTimeTable from './student-time-table';
 import InstructorTimeTable from './instructor-time-table';
 //import rest from 'feathers-rest';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 // Needed for onTouchTap
 import superagent from 'superagent';
 injectTapEventPlugin();
 
 console.log("app");
-
 
 class App extends Component {
   constructor(props){
@@ -25,21 +26,22 @@ class App extends Component {
   render() {
     let StudentDetailsPageWrapper = (props) => <StudentDetailsPage app={this.app}/>;
     let InstructorDetailsPageWrapper = (props) => <InstructorDetailsPage app={this.app}/>;
-    let StudentTimeTableWrapper = (props) => <StudentTimeTable app={this.app}/>;
+    let StudentTimeTableWrapper = (props) => <StudentTimeTable app={this.app} id={props.match.id}/>;
     let InstructorTimeTableWrapper = (props) => <InstructorTimeTable app={this.app}/>;
 
     return (
-      <BrowserRouter>
-        <div>
-        <Route path="/students" component={StudentDetailsPageWrapper}/>
-        <Route path="/student-classes" component={StudentTimeTableWrapper}/>
-        <Route path="/instructor-classes" component={InstructorTimeTableWrapper}/>
-        <Route path="/classes" component={StudentTimeTableWrapper}/>
-        <Route path="/instructors" component={InstructorDetailsPageWrapper}/>
-          <Route exact path="/" component={HomePage}/>
-
-        </div>
-      </BrowserRouter>
+      <MuiThemeProvider>
+        <BrowserRouter>
+          <div>
+            <Route exact path="/students" component={StudentDetailsPageWrapper}/>
+            <Route path="/student-classes/:id" component={StudentTimeTableWrapper}/>
+            <Route path="/instructor-classes/:id" component={InstructorTimeTableWrapper}/>
+            <Route path="/classes" component={StudentTimeTableWrapper}/>
+            <Route path="/instructors" component={InstructorDetailsPageWrapper}/>
+            <Route exact path="/" component={HomePage}/>
+          </div>
+        </BrowserRouter>
+      </MuiThemeProvider>
     );
   }
 }

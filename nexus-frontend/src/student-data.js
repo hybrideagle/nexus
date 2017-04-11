@@ -17,10 +17,9 @@ let Student = (props) => {
               <div>Name:{props.data.name}</div>
               <div>Age:{props.data.age}</div>
             </CardText>
-            <RaisedButton label={Show details} primary={true} style={{bgColor:"black"}}/>
-            <RaisedButton label={Show timetable}/>
+            <Link to={"/student-classes"+props.data.id}><RaisedButton label={Show timetable} primary={true} style={{bgColor:"black"}}/></Link>
         </Card>);
-};
+}; 
 
 let temp_data = {name:"Blargh",age:15};
 

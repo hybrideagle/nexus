@@ -18,11 +18,4 @@ let Event = (props) => {
         </Card>);
 };
 
-export default (props) => {
-  let events = props.data.map((d)=> <Event data={d}/>);
-  return (
-    <div>
-      {events}
-    </div>
-  );
-}
+export default Event;
