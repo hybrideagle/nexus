@@ -2,23 +2,22 @@
 
 const hooks = require('./hooks');
 var conn_arr = {client:'pg',connection:'postgres://postgres@localhost/calender'}
-var db = knex(conn_arr);
-var pg = require('knex')({client: 'pg',connection:'postgres://postgres@localhost/calender'});
+//var db = knex(conn_arr);
 
 
 class Service {
   constructor(options) {
     this.options = options || {};
+    this.db = require('knex')({client: 'pg',connection:'postgres://postgres@localhost/calender'});
+
   }
 
   find(params) {
-    return db.from("student").select();
+    return this.db.from("student").select();
   }
 
   get(id, params) {
-    return Promise.resolve({
-      id,db.from("student").where('usn', 'ilike',id).select();
-    });
+    return this.db.from("student").where('usn', 'ilike',id).select();
   }
 
   create(data, params) {

@@ -31,7 +31,7 @@ class App extends Component {
     let InstructorDetailsPageWrapper = (props) => <InstructorDetailsPage app={this.app}/>;
     let StudentTimeTableWrapper = (props) => <StudentTimeTable app={this.app} id={props.match.id}/>;
     let InstructorTimeTableWrapper = (props) => <InstructorTimeTable app={this.app} id={props.match.params.id}/>;
-    let DepartmentDetailsPageWrapper = (props) => <DepartmentDetailsPage app={this.app}/>;
+    let DepartmentDetailsPageWrapper = (props) => <DepartmentDetailsPage app={this.app} id={props.match.params.id}/>;
 
     return (
       <MuiThemeProvider>
