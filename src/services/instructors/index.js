@@ -1,6 +1,8 @@
 'use strict';
 
 const hooks = require('./hooks');
+var conn_arr = {client:'pg',connection:'postgres://postgres@localhost/calender'}
+//var db = knex(conn_arr);
 
 class Service {
   constructor(options) {
@@ -14,9 +16,7 @@ class Service {
   }
 
   get(id, params) {
-    //return Promise.resolve({
-    //  id,db.from("instructor").where('in_id', 'ilike',id).select();
-    //});
+    return this.db.from("instructor").where('in_id', 'ilike',id).select();
   }
 
   create(data, params) {
