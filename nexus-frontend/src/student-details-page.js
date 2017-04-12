@@ -4,8 +4,10 @@ import StudentDetails from './student-details'
 import React, { Component } from 'react';
 import TopBar from './top-bar';
 import Paper from 'material-ui/Paper';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import LeftNav from './left-nav'
+import LeftNav from './left-nav';
+import StudentCreateDialog from './student-create-dialog';
 let temp_data = [{
     id:1,
     name:"asd",
@@ -54,6 +56,7 @@ class StudentDetailsPage extends Component {
         <div>
           <StudentCard />
           <StudentDetails data={this.state.data}/>
+          <FloatingActionButton />
         </div>
       </div>
     </MuiThemeProvider>);
