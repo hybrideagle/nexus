@@ -7,15 +7,16 @@ class StudentCreateDialog extends React.Component{
 
   constructor(props){
     super(props);
-    this.state = {usn:""};
+    this.state = {usn:"blarghe"};
   }
 
   handleSubmit = (event) => {
       console.log("handling submit:",this.state.usn);
       this.props.submit(this.state.usn);
-      event.preventDefault();
   }
-  
+
+  handleChange = (e) => this.setState({usn:e.target.value})
+
   render(){
     let actions = [
       <FlatButton
@@ -39,7 +40,7 @@ class StudentCreateDialog extends React.Component{
       >
         <form>
           <label>
-            <input type="text" value={this.state.usn} onChange={(e)=>this.setState({usn:event.target.value})}/>
+            <input type="text" value={this.state.usn} onChange={this.handleChange}/>
           </label>
         </form>
       </Dialog>
