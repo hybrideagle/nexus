@@ -41,6 +41,10 @@ class Service {
   
   get_all_classes(id){
      //get all classes that id=usn is attending from class_recurring
+     return Promise.resolve({
+        id,db.from("student")
+
+     });
   }
 
   get_all_worshops(id){
