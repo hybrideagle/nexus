@@ -48,39 +48,36 @@ FROM
 GROUP BY
   (dep_id);
 
-
-
 -- 6)All recurring classes in order of time of occurence
 
 SELECT
-  c_id,name
+  c_id,name,class_recurring.at_time
 FROM
-  class_once INNER JOIN course using (c_id) INNER JOIN department using (dep_id)
+  class_recurring INNER JOIN course using (c_id) INNER JOIN department using (dep_id)
 ORDER BY
-  day,at_time
+  at_time
 
 -- 7)All classes taken by a student, in order of time of occurence.
 
 SELECT
-  c_id,name
+  c_id,name,takes_class_recurring.at_time
 FROM
-  class_once INNER JOIN course using (c_id) INNER JOIN student using (c_id)
+  class_recurring INNER JOIN takes_class_recurring using (c_id) INNER JOIN student using (usn)
 WHERE
   usn like '01FB15ECS309'
 ORDER BY
-  day,at_time;
-
+  class_recurring.at_time;
 
 -- 8)All classes taught by an intructor, in order of occurence.
 
 SELECT
-  c_id,name
-FROM
-  class_once INNER JOIN course using (c_id) INNER JOIN instructor using (c_id)
+  c_id,course.name
+FROM	
+  student inner join takes_course using (usn)inner join course using(c_id) INNER JOIN class_once using (c_id) INNER JOIN instructor on (instructor.in_id=class_once.i_id)
 WHERE
-  usn like '01FB15ECS315'
+  usn like '01FB15ECS309'
 ORDER BY
-  day,at_time;
+  on_date,at_time;
 
 
 -- 9)All courses a student is qualified to take.
