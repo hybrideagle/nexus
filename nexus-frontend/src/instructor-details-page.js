@@ -34,8 +34,8 @@ class InstructorDetailsPage extends Component {
   }
   componentDidMount() {
     let app = this.props.app;
-    const studentService = app.service('students');
-    studentService.find().then(page => this.setState({ data: page.data }));
+    const instructorService = app.service('instructors');
+    instructorService.find().then(page => this.setState({ data: page.data }));
   }
 
   render() {
