@@ -11,40 +11,42 @@ FROM student,department,section,instructor where
 
 -- 2)All the sections with student counts.
 
-SELECT
-  department.dep_name,section.sec_id,count(*)
-FROM
-  department INNER JOIN section using (department.dep_id) INNER JOIN student using (sec_id)
-GROUP BY sec_id;
+SELECT department.dep_name,a.sec_id,a.c from department,(
+	SELECT
+	  section.sec_id,count(*) as c
+	FROM
+	  department INNER JOIN section using (dep_id) INNER JOIN student using 	(sec_id)
+	GROUP BY sec_id
+	)as a;
 
 
 -- 3)All one-time classes taken by students from multiple sections
-
-SELECT
-  c.name, c.id as c1, c.id as c2
+SELECT course.name,a.c1 from course,
+(SELECT
+  c.c_id as c1
 FROM
   class_once INNER JOIN takes_class_once tc using (c_id)
-   INNER JOIN class_once c on c.c_id = tc.c_id and c.day = tc.day and c.at_time=tc.at_time and c.l_id=tc.l_id;
+   INNER JOIN class_once c on c.c_id = tc.c_id and c.on_date = tc.on_date and c.at_time=tc.at_time and c.l_id=tc.l_id)as a where a.c1=course.c_id;
 
 -- 4)All courses in reverse order of the number of people that take them.
 
 SELECT
-  c_id, count(*) as num
-FROM
-  course INNER JOIN takes_course using (c_id) INNER JOIN student using (usn)
+  c_id,count(*) as num from
+(select * from 
+student inner join takes_course using (usn) inner join course using (c_id))as ab
 GROUP BY
-  usn;
+	(ab.c_id)
 ORDER BY
   num DESC;
 
 -- 5)All one-off courses, grouped by Department.
 
 SELECT
-  dep_id, c_id, title
+  ab.dep_id, ab.c_id, ab.name
 FROM
-  class_once INNER JOIN course using c_id INNER JOIN department on (dep_id)
+  (select * from class_once INNER JOIN course using (c_id) INNER JOIN department on (department.dep_id))as ab;
 GROUP BY
-  dep_id
+  (dep_id);
 
 
 
