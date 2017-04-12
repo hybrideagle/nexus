@@ -13,9 +13,18 @@ let Event = (props) => {
             <CardText>
               <div>Name:{props.data.name}</div>
               <div>Time:{props.data.time}</div>
+              <div>Date:{props.data.date}</div>
+
               <div>Location:{props.data.location}</div>
             </CardText>
         </Card>);
 };
 
-export default Event;
+export default ({data}) => {
+  let events = data.map((a)=><Event data={a} key={a.id}/>);
+  return (
+    <div>
+      {events}
+    </div>
+  );
+}

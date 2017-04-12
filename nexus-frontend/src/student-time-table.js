@@ -3,11 +3,20 @@ import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LeftNav from './left-nav'
-let temp_data = {
+let temp_data = [
+  {
     id:1,
     name:"asd",
     age:"asasd"
-  };
+  },{
+    id:2,
+    name:"asd",
+    age:"asasd"
+  },{
+    id:3,
+    name:"asd",
+    age:"asasd"
+  }];
 
 let TimeCard = (props) =>
 (  <div style={{width:"50%",margin:"0 auto",textAlign:"center"}}>
@@ -17,7 +26,7 @@ let TimeCard = (props) =>
   </div>
 );
 
-class StudentDetailsPage extends Component {
+class StudentTimeTable extends Component {
   constructor(props){
     super(props);
     this.state ={data:temp_data};
@@ -31,10 +40,7 @@ class StudentDetailsPage extends Component {
   render() {
     return (
     <MuiThemeProvider>
-      <div style={{width:"80%",marginLeft:"20%"}}>
-        <div>
-          </div>
-          <LeftNav width="25%" open={true}/>
+      <div>
         <div>
           <TimeCard id={this.props.id}/>
           <TimeTable data={this.state.data}/>
@@ -43,4 +49,4 @@ class StudentDetailsPage extends Component {
     </MuiThemeProvider>);
   }
 }
-export default StudentDetailsPage;
+export default StudentTimeTable;

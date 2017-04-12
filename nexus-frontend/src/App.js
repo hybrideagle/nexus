@@ -4,9 +4,11 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {BrowserRouter,Route, Redirect} from 'react-router-dom';
 import StudentDetailsPage from './student-details-page';
 import InstructorDetailsPage from './instructor-details-page';
+import DepartmentDetailsPage from './department-details-page'
 import feathers,{rest} from 'feathers-client';
 import HomePage from './home-page';
-import timeTable from './home-page';
+import TopBar from './top-bar';
+import LeftNav from './left-nav';
 import StudentTimeTable from './student-time-table';
 import InstructorTimeTable from './instructor-time-table';
 //import rest from 'feathers-rest';
@@ -27,19 +29,27 @@ class App extends Component {
     let StudentDetailsPageWrapper = (props) => <StudentDetailsPage app={this.app}/>;
     let InstructorDetailsPageWrapper = (props) => <InstructorDetailsPage app={this.app}/>;
     let StudentTimeTableWrapper = (props) => <StudentTimeTable app={this.app} id={props.match.id}/>;
-    let InstructorTimeTableWrapper = (props) => <InstructorTimeTable app={this.app}/>;
+    let InstructorTimeTableWrapper = (props) => <InstructorTimeTable app={this.app} id={props.match.id}/>;
+    let DepartmentDetailsPageWrapper = (props) => <DepartmentDetailsPage app={this.app}/>;
 
     return (
       <MuiThemeProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <div id="container">
           <div>
-            <Route exact path="/students" component={StudentDetailsPageWrapper}/>
-            <Route path="/student-classes/:id" component={StudentTimeTableWrapper}/>
-            <Route path="/instructor-classes/:id" component={InstructorTimeTableWrapper}/>
-            <Route path="/classes" component={StudentTimeTableWrapper}/>
-            <Route path="/instructors" component={InstructorDetailsPageWrapper}/>
-            <Route exact path="/" component={HomePage}/>
+            <TopBar />
           </div>
+          <LeftNav open={true}/>
+            <div style={{width:"70%",marginLeft:"20%"}}>
+              <Route exact path="/students" component={StudentDetailsPageWrapper}/>
+              <Route path="/student-classes/:id" component={StudentTimeTableWrapper}/>
+              <Route path="/instructor-classes/:id" component={InstructorTimeTableWrapper}/>
+              <Route path="/classes" component={StudentTimeTableWrapper}/>
+              <Route path="/instructors" component={InstructorDetailsPageWrapper}/>
+              <Route path="/departments" component={DepartmentDetailsPageWrapper}/>
+              <Route exact path="/" component={HomePage}/>
+            </div>
+        </div>
         </BrowserRouter>
       </MuiThemeProvider>
     );

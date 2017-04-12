@@ -1,4 +1,4 @@
-import InstructorDetails from './student-details'
+import DepartmentDetails from './department-details'
 import React, { Component } from 'react';
 import TopBar from './top-bar';
 import Paper from 'material-ui/Paper';
@@ -7,27 +7,27 @@ import LeftNav from './left-nav'
 let temp_data = [{
     id:1,
     name:"asd",
-    age:"asasd"
+    manager:"asasd"
   },{
     id:2,
     name:"asd",
-    age:"asasd"
+    manager:"asasd"
   },{
     id:3,
     name:"asd",
-    age:"asasd"
+    manager:"asasd"
   }];
 
-let InstructorCard = () =>
+let DepartmentCard = () =>
 (<MuiThemeProvider>
   <div style={{width:"50%",margin:"0 auto",textAlign:"center"}}>
     <Paper zDepth={2}>
-      <h1>Instructors</h1>
+      <h1>Deparmtents</h1>
     </Paper>
   </div>
 </MuiThemeProvider>);
 
-class InstructorDetailsPage extends Component {
+class DepartmentDetailsPage extends Component {
   constructor(props){
     super(props);
     this.state ={data:temp_data};
@@ -43,10 +43,10 @@ class InstructorDetailsPage extends Component {
     return (
     <MuiThemeProvider>
       <div style={{width:"80%",marginLeft:"20%"}}>
-          <InstructorCard />
-          <InstructorDetails data={this.state.data}/>
+          <DepartmentCard />
+          <DepartmentDetails data={this.state.data}/>
       </div>
     </MuiThemeProvider>);
   }
 }
-export default InstructorDetailsPage;
+export default DepartmentDetailsPage;

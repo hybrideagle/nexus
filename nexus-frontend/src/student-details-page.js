@@ -41,13 +41,10 @@ class StudentDetailsPage extends Component {
   }
 
   render() {
+    console.log("data:",this.state.data);
     return (
     <MuiThemeProvider>
       <div style={{width:"80%",marginLeft:"20%"}}>
-        <div>
-        <TopBar />
-        </div>
-        <LeftNav width="20%" open={true}/>
         <div>
           <StudentCard />
           <StudentDetails data={this.state.data}/>

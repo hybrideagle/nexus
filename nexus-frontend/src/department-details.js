@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import RaisedButton from 'material-ui/RaisedButton';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import DockedDrawer from './docked-drawer';
@@ -13,15 +14,13 @@ let Student = (props) => {
             <CardText style={{textAlign:"center"}}>
               <div style={{display:"inline-block"}}>
                 <div>Name:{props.data.name}</div>
-                <div>Age:{props.data.age}</div>
+                <div>Manager:{props.data.age}</div>
               </div>
               <div style={{width:"10%",display:"inline-block"}} />
               <div style={{display:"inline-block"}}>
-              <CardActions>
                 <Link to={"/student-classes/"+props.data.id}>
-                  <FlatButton label={"Show timetable"} primary={true} style={{bgColor:"black"}}/>
+                  <RaisedButton label={"Show sections"} primary={true} style={{bgColor:"black"}}/>
                 </Link>
-                </CardActions>
               </div>
             </CardText>
         </Card>);
