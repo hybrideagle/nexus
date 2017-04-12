@@ -45,7 +45,7 @@ module.exports = function(){
   app.use('/students', new Service());
 
   // Get our initialize service to that we can bind hooks
-  const studentsService = app.service('/students');
+  const studentsService = app.service('students');
 
   // Set up our before hooks
   studentsService.before(hooks.before);

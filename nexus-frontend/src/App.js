@@ -23,13 +23,14 @@ console.log("app");
 class App extends Component {
   constructor(props){
     super(props);
-    this.app = feathers().configure(rest("http://127.0.0.1:3000").superagent(superagent));
+    this.app = feathers().configure(rest("http://127.0.0.1:3010").superagent(superagent));
   }
   render() {
+    console.log(this.props.match);
     let StudentDetailsPageWrapper = (props) => <StudentDetailsPage app={this.app}/>;
     let InstructorDetailsPageWrapper = (props) => <InstructorDetailsPage app={this.app}/>;
     let StudentTimeTableWrapper = (props) => <StudentTimeTable app={this.app} id={props.match.id}/>;
-    let InstructorTimeTableWrapper = (props) => <InstructorTimeTable app={this.app} id={props.match.id}/>;
+    let InstructorTimeTableWrapper = (props) => <InstructorTimeTable app={this.app} id={props.match.params.id}/>;
     let DepartmentDetailsPageWrapper = (props) => <DepartmentDetailsPage app={this.app}/>;
 
     return (

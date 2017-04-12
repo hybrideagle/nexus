@@ -25,7 +25,7 @@ let InstructorCard = (props) =>
   </div>
 );
 
-class InstructorDetailsPage extends Component {
+class InstructorTimeTable extends Component {
   constructor(props){
     super(props);
     this.state ={data:temp_data};
@@ -33,7 +33,7 @@ class InstructorDetailsPage extends Component {
   componentDidMount() {
     let app = this.props.app;
     const instructorService = app.service('instructors');
-    instructorService.get_all_classes(this.props.id).then(page => this.setState({ data: page.data }));
+    instructorService.get(this.props.id).then(page => this.setState({ data: page.data }));
   }
 
   render() {
@@ -48,4 +48,4 @@ class InstructorDetailsPage extends Component {
     </MuiThemeProvider>);
   }
 }
-export default InstructorDetailsPage;
+export default InstructorTimeTable;
