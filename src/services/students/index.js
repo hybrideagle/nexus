@@ -23,7 +23,7 @@ class Service {
   create(data, params) {
     return Promise.all([
       function(){
-        return pg("student").insert(
+        return this.db("student").insert(
             {
              usn:data["usn"],
              name:data["name"],
