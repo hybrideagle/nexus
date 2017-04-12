@@ -4,15 +4,17 @@
 
 SELECT
   student.name,department.dep_name,section.sec_id,instructor.name
-FROM
-  department INNER JOIN student using(dep_id) INNER JOIN student using (sec_id) INNER JOIN instructor on(student.adv_id=instructor.in_id);
+FROM student,department,section,instructor where
+	student.dep_id=department.dep_id and 
+	student.sec_id=section.sec_id and
+	student.adv_id=instructor.in_id
 
 -- 2)All the sections with student counts.
 
 SELECT
-  department.dep_id,section.sec_id, count(*)
+  department.dep_name,section.sec_id,count(*)
 FROM
-  department INNER JOIN section using (dep_id) INNER JOIN student using (sec_id)
+  department INNER JOIN section using (department.dep_id) INNER JOIN student using (sec_id)
 GROUP BY sec_id;
 
 
