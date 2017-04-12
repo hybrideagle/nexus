@@ -1,6 +1,6 @@
 # nexus
 
-> A basic campus-wide event and calendar management app, built as a DBMS project
+> 
 
 ## About
 

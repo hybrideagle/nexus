@@ -1,13 +1,5 @@
 {
   "host": "localhost",
   "port": 3030,
-  "postgres": "postgres://postgres:@localhost:5432/nexus",
-  "public": "../public/",
-  "auth": {
-    "idField": "id",
-    "token": {
-      "secret": "95LXPoIB0bMddpU2xC218fp+yst5AGWuqE0lfBIxpfRKmsPvGqYGoM06Dvtl0/C+/9JscH2/EbgjlnpFKD55iQ=="
-    },
-    "local": {}
-  }
+  "public": "../public/"
 }

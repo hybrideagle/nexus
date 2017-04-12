@@ -23,7 +23,7 @@ console.log("app");
 class App extends Component {
   constructor(props){
     super(props);
-    this.app = feathers().configure(rest("http://192.168.43.84:3000").superagent(superagent));
+    this.app = feathers().configure(rest("http://127.0.0.1:3000").superagent(superagent));
   }
   render() {
     let StudentDetailsPageWrapper = (props) => <StudentDetailsPage app={this.app}/>;

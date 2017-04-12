@@ -1,16 +1,24 @@
 'use strict';
-const department = require('./department');
-const instructorClasses = require('./instructor-classes');
-const studentClasses = require('./student-classes');
-const instructor = require('./instructor');
-const student = require('./student');
+
+
+const instructorClasses = require('./instructor_classes');
+
+
+const studentClasses = require('./student_classes');
+
+
+const instructors = require('./instructors');
+
+
+const students = require('./students');
+
 
 module.exports = function() {
   const app = this;
 
-  app.configure(student);
-  app.configure(instructor);
+
+  app.configure(students);
+  app.configure(instructors);
   app.configure(studentClasses);
   app.configure(instructorClasses);
-  app.configure(department);
 };

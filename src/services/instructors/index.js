@@ -8,26 +8,21 @@ class Service {
   }
 
   find(params) {
-    return db.from("department").select();
+    return Promise.resolve([]);
   }
 
   get(id, params) {
     return Promise.resolve({
-      id,db.from("department").where('dep_id', 'ilike',id).select();
+      id, text: `A new message with ID: ${id}!`
     });
   }
 
   create(data, params) {
-    return Promise.all([
-      function(){
-        return pg("department").insert(
-            {
-             dep_id:data["dep_id"],
-             dep_name:data["dep_name"]
-            }
-        );
-      }
-    ]);
+    if(Array.isArray(data)) {
+      return Promise.all(data.map(current => this.create(current)));
+    }
+
+    return Promise.resolve(data);
   }
 
   update(id, data, params) {
@@ -47,16 +42,16 @@ module.exports = function(){
   const app = this;
 
   // Initialize our service with any options it requires
-  app.use('/departments', new Service());
+  app.use('/instructors', new Service());
 
   // Get our initialize service to that we can bind hooks
-  const departmentService = app.service('/departments');
+  const instructorsService = app.service('/instructors');
 
   // Set up our before hooks
-  departmentService.before(hooks.before);
+  instructorsService.before(hooks.before);
 
   // Set up our after hooks
-  departmentService.after(hooks.after);
+  instructorsService.after(hooks.after);
 };
 
 module.exports.Service = Service;
