@@ -1,10 +1,14 @@
 'use strict';
 
 const hooks = require('./hooks');
+var conn_arr = {client:'pg',connection:'postgres://postgres@localhost/calender'}
+//var db = knex(conn_arr);
 
 class Service {
-  constructor(options) {
+ constructor(options) {
     this.options = options || {};
+    this.db = require('knex')({client: 'pg',connection:'postgres://postgres@localhost/calender'});
+
   }
 
   find(params) {
@@ -12,9 +16,7 @@ class Service {
   }
 
   get(id, params) {
-    return Promise.resolve({
-      id, text: `A new message with ID: ${id}!`
-    });
+    return this.db.raw('SELECT c_id,course.name FROM student inner join takes_course using (usn)inner join course using(c_id) INNER JOIN class_once using (c_id) INNER JOIN instructor on (instructor.in_id=class_once.i_id) WHERE usn like ? ORDER BY on_date,at_time;',[id]);
   }
 
   create(data, params) {
