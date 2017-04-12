@@ -1,6 +1,9 @@
 'use strict';
 
 const hooks = require('./hooks');
+var conn_arr = {client:'pg',connection:'postgres://postgres@localhost/calender'}
+var db = knex(conn_arr);
+var pg = require('knex')({client: 'pg',connection:'postgres://postgres@localhost/calender'});
 
 class Service {
   constructor(options) {
@@ -8,22 +11,30 @@ class Service {
   }
 
   find(params) {
-    return Promise.resolve([]);
+    return db.from("instructor").select();
   }
 
   get(id, params) {
     return Promise.resolve({
-      id, text: `A new message with ID: ${id}!`
+      id,db.from("instructor").where('in_id', 'ilike',id).select();
     });
   }
 
   create(data, params) {
-    if(Array.isArray(data)) {
-      return Promise.all(data.map(current => this.create(current)));
-    }
-
-    return Promise.resolve(data);
-  }
+     return Promise.all([
+      function(){
+        return pg("instructor").insert(
+            {
+             in_id:data["in_id"],
+             gender:data["gender"],
+             name:data["name"],
+             doj:data["doj"],
+             dep_id:data["dep_id"],
+            }
+        );
+      }
+    ]);
+   }
 
   update(id, data, params) {
     return Promise.resolve(data);
