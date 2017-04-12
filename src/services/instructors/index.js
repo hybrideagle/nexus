@@ -20,9 +20,7 @@ class Service {
   }
 
   create(data, params) {
-     return Promise.all([
-      function(){
-        return this.db("instructor").insert(
+      return this.db("instructor").insert(
             {
              in_id:data["in_id"],
              gender:data["gender"],
@@ -31,12 +29,13 @@ class Service {
              dep_id:data["dep_id"],
             }
         );
-      }
-    ]);
-   }
+  }
 
   update(id, data, params) {
-    return Promise.resolve(data);
+    this.db("instructor").where('in_id','ilike',id).update('gender',data["gender"]);
+    this.db("instructor").where('in_id','ilike',id).update('name',data["name"]);
+    this.db("instructor").where('in_id','ilike',id).update('doj',data["doj"]);
+    this.db("instructor").where('in_id','ilike',id).update('dep_id',data["dep_id"]);
   }
 
   patch(id, data, params) {

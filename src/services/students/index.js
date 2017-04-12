@@ -21,8 +21,6 @@ class Service {
   }
 
   create(data, params) {
-    return Promise.all([
-      function(){
         return this.db("student").insert(
             {
              usn:data["usn"],
@@ -35,12 +33,16 @@ class Service {
              sec_id:data["sec_id"]
             }
         );
-      }
-    ]);
   }
 
   update(id, data, params) {
-    return Promise.resolve(data);
+    this.db("student").where('usn','ilike',id)..update('name',data["name"]);
+    this.db("student").where('usn','ilike',id)..update('adv_id',data["adv_id"]);
+    this.db("student").where('usn','ilike',id)..update('doa',data["doa"]);
+    this.db("student").where('usn','ilike',id)..update('dob',data["dob"]);
+    this.db("student").where('usn','ilike',id)..update('gender',data["gender"]);
+    this.db("student").where('usn','ilike',id)..update('dep_id',data["dep_id"]);
+    this.db("student").where('usn','ilike',id)..update('sec_id',data["sec_id"]);
   }
 
   patch(id, data, params) {
