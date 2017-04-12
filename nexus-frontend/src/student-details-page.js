@@ -34,13 +34,15 @@ let StudentCard = () =>
 class StudentDetailsPage extends Component {
   constructor(props){
     super(props);
-    this.state ={data:temp_data};
+    let app = this.props.app;
+    this.studentService = app.service('students');
+    this.state ={data:temp_data,dialog_open:false};
   }
   componentDidMount() {
     let app = this.props.app;
-    const studentService = app.service('students');
-    console.log(studentService);
-    studentService.find().then(
+    this.studentService = app.service('students');
+    console.log(this.studentService);
+    this.studentService.find().then(
       page => {
         console.log("page",page);
         this.setState({ data: page });
@@ -48,16 +50,41 @@ class StudentDetailsPage extends Component {
     )
   }
 
+  submit = (usn) => {
+    let vals = {
+      "usn":usn,
+      "name":"student_name_7",
+      "adv_id":"in_04",
+      "doa":"16/07/2015",
+      "dob":"08/07/1997",
+      "gender":"F",
+      "dep_id":"cs",
+      "sec_id":"cs-c"
+    }
+    this.studentService.create(vals);
+    this.setState({dialog_open:false});
+  }
+
   render() {
     console.log("data:",this.state.data);
+    let openDialog = () => this.setState({dialog_open:true});
     return (
     <MuiThemeProvider>
       <div style={{width:"80%",marginLeft:"20%"}}>
         <div>
           <StudentCard />
+          <FloatingActionButton
+            style={{float:"right/",position:"fixed",bottom:"1em",right:"1em"}}
+            onTouchTap={openDialog}
+          />
           <StudentDetails data={this.state.data}/>
-          <FloatingActionButton />
         </div>
+        <StudentCreateDialog
+        open={this.state.dialog_open}
+        handleClose={()=>this.setState({dialog_open:false})}
+        handleOpen={()=>this.setState({dialog_open:true})}
+        submit={this.submit}
+        />
       </div>
     </MuiThemeProvider>);
   }
