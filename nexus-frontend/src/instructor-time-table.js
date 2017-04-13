@@ -32,7 +32,8 @@ class InstructorTimeTable extends Component {
   }
   componentDidMount() {
     let app = this.props.app;
-    const instructorService = app.service('instructors');
+    console.log("id",this.props.id);
+    const instructorService = app.service('instructor_classes');
     instructorService.get(this.props.id).then(page => this.setState({ data: page.data }));
   }
 

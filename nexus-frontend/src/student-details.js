@@ -21,7 +21,7 @@ let Student = (props) => {
                 <Link to={"/student-classes/"+props.data.id}>
                   <FlatButton label={"Show timetable"} primary={true} style={{bgColor:"black"}}/>
                 </Link>
-                <FlatButton label={"Delete Entry"} secondary={true} style={{bgColor:"black"}}/>
+                <FlatButton label={"Delete Entry"} secondary={true} style={{bgColor:"black"}} onTouchTap={() => this.props.remove(props.data.usn)}/>
 
                 </CardActions>
               </div>
@@ -39,7 +39,7 @@ let Student = (props) => {
 
 export default (props) => {
     console.log(props.data);
-    let cards = props.data.map(a => <Student data={a} key={a.id}/> );
+    let cards = props.data.map(a => <Student data={a} key={a.id} remove={props.remove}/> );
     return (
       <div>
         {cards}

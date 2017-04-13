@@ -65,6 +65,8 @@ class StudentDetailsPage extends Component {
     this.setState({dialog_open:false});
   }
 
+  remove = (usn) => () =>  this.studentService.remove(usn);
+
   render() {
     console.log("data:",this.state.data);
     let openDialog = () => this.setState({dialog_open:true});
@@ -77,7 +79,7 @@ class StudentDetailsPage extends Component {
             style={{float:"right/",position:"fixed",bottom:"1em",right:"1em"}}
             onTouchTap={openDialog}
           />
-          <StudentDetails data={this.state.data}/>
+          <StudentDetails data={this.state.data} remove={this.remove}/>
         </div>
         <StudentCreateDialog
         open={this.state.dialog_open}

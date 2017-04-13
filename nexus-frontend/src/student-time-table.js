@@ -33,8 +33,9 @@ class StudentTimeTable extends Component {
   }
   componentDidMount() {
     let app = this.props.app;
-    const studentService = app.service('students');
-    //studentService.get_all_classes(this.props.id).then(page => this.setState({ data: page.data }));
+    console.log("id",this.props.id);
+    const timeTableService = app.service('student_classes');
+    timeTableService.get(this.props.id).then(page => this.setState({ data: page }));
   }
 
   render() {
@@ -43,7 +44,7 @@ class StudentTimeTable extends Component {
       <div>
         <div>
           <TimeCard id={this.props.id}/>
-          <TimeTable data={this.state.data}/>
+          <TimeTable data={this.state.data} id={this.props.id}/>
         </div>
       </div>
     </MuiThemeProvider>);

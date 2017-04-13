@@ -31,7 +31,7 @@ class App extends Component {
     console.log(this.props.match);
     let StudentDetailsPageWrapper = (props) => <StudentDetailsPage app={this.app}/>;
     let InstructorDetailsPageWrapper = (props) => <InstructorDetailsPage app={this.app}/>;
-    let StudentTimeTableWrapper = (props) => <StudentTimeTable app={this.app} id={props.match.id}/>;
+    let StudentTimeTableWrapper = (props) => <StudentTimeTable app={this.app} id={props.match.params.id}/>;
     let InstructorTimeTableWrapper = (props) => <InstructorTimeTable app={this.app} id={props.match.params.id}/>;
     let DepartmentDetailsPageWrapper = (props) => <DepartmentDetailsPage app={this.app} id={props.match.params.id}/>;
 
@@ -45,8 +45,8 @@ class App extends Component {
             <LeftNav open={true}/>
               <div style={{width:"70%",marginLeft:"20%"}}>
                 <Route exact path="/students" component={StudentDetailsPageWrapper}/>
-                <Route path="/student-classes/:id" component={StudentTimeTableWrapper}/>
-                <Route path="/instructor-classes/:id" component={InstructorTimeTableWrapper}/>
+                <Route path="/student_classes/:id" component={StudentTimeTableWrapper}/>
+                <Route path="/instructor_classes/:id" component={InstructorTimeTableWrapper}/>
                 <Route path="/classes" component={StudentTimeTableWrapper}/>
                 <Route path="/instructors" component={InstructorDetailsPageWrapper}/>
                 <Route path="/departments" component={DepartmentDetailsPageWrapper}/>

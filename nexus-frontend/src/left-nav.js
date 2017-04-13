@@ -9,8 +9,8 @@ export default (props) => {
           <Link to="/"><MenuItem>Home</MenuItem></Link>
           <Link to="/students"><MenuItem>Students</MenuItem></Link>
           <Link to="/instructors"><MenuItem>Instructors</MenuItem></Link>
-          <Link to="/student-classes/1"><MenuItem>Student Timetable</MenuItem></Link>
-          <Link to="/instructor-classes/1"><MenuItem>Instructor Timetable</MenuItem></Link>
+          <Link to="/student_classes/01FB15ECS306"><MenuItem>Student Timetable</MenuItem></Link>
+          <Link to="/instructor_classes/01FB15ECS306"><MenuItem>Instructor Timetable</MenuItem></Link>
           <Link to="/departments"><MenuItem>Departments</MenuItem></Link>
         </Drawer>
       </div>

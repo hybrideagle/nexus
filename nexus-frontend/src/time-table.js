@@ -8,13 +8,13 @@ import DockedDrawer from './docked-drawer'
 
 
 let Event = (props) => {
+  console.log(props.data);
   return (<Card>
             <DockedDrawer />
             <CardText>
               <div>Name:{props.data.name}</div>
-              <div>Time:{props.data.time}</div>
-              <div>Date:{props.data.date}</div>
-
+              <div>c_id:{props.data.c_id}</div>
+              <div>time:{props.data.at_time}</div>
               <div>Location:{props.data.location}</div>
             </CardText>
         </Card>);
