@@ -37,22 +37,22 @@ class App extends Component {
 
     return (
       <MuiThemeProvider>
-      <BrowserRouter>
-        <div id="container">
-          <div>
-            <TopBar />
-          </div>
-          <LeftNav open={true}/>
-            <div style={{width:"70%",marginLeft:"20%"}}>
-              <Route exact path="/students" component={StudentDetailsPageWrapper}/>
-              <Route path="/student-classes/:id" component={StudentTimeTableWrapper}/>
-              <Route path="/instructor-classes/:id" component={InstructorTimeTableWrapper}/>
-              <Route path="/classes" component={StudentTimeTableWrapper}/>
-              <Route path="/instructors" component={InstructorDetailsPageWrapper}/>
-              <Route path="/departments" component={DepartmentDetailsPageWrapper}/>
-              <Route exact path="/" component={HomePage}/>
+        <BrowserRouter>
+          <div id="container">
+            <div>
+              <TopBar />
             </div>
-        </div>
+            <LeftNav open={true}/>
+              <div style={{width:"70%",marginLeft:"20%"}}>
+                <Route exact path="/students" component={StudentDetailsPageWrapper}/>
+                <Route path="/student-classes/:id" component={StudentTimeTableWrapper}/>
+                <Route path="/instructor-classes/:id" component={InstructorTimeTableWrapper}/>
+                <Route path="/classes" component={StudentTimeTableWrapper}/>
+                <Route path="/instructors" component={InstructorDetailsPageWrapper}/>
+                <Route path="/departments" component={DepartmentDetailsPageWrapper}/>
+                <Route exact path="/" component={HomePage}/>
+              </div>
+          </div>
         </BrowserRouter>
       </MuiThemeProvider>
     );

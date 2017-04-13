@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
-const hooks = require('./hooks');
+const hooks = require('./hooks')
 var conn_arr = {client:'pg',connection:'postgres://postgres@localhost/calender'}
 //var db = knex(conn_arr);
 
@@ -36,13 +36,13 @@ class Service {
   }
 
   update(id, data, params) {
-    this.db("student").where('usn','ilike',id)..update('name',data["name"]);
-    this.db("student").where('usn','ilike',id)..update('adv_id',data["adv_id"]);
-    this.db("student").where('usn','ilike',id)..update('doa',data["doa"]);
-    this.db("student").where('usn','ilike',id)..update('dob',data["dob"]);
-    this.db("student").where('usn','ilike',id)..update('gender',data["gender"]);
-    this.db("student").where('usn','ilike',id)..update('dep_id',data["dep_id"]);
-    this.db("student").where('usn','ilike',id)..update('sec_id',data["sec_id"]);
+    this.db("student").where('usn','ilike',id).update('name',data["name"]);
+    this.db("student").where('usn','ilike',id).update('adv_id',data["adv_id"]);
+    this.db("student").where('usn','ilike',id).update('doa',data["doa"]);
+    this.db("student").where('usn','ilike',id).update('dob',data["dob"]);
+    this.db("student").where('usn','ilike',id).update('gender',data["gender"]);
+    this.db("student").where('usn','ilike',id).update('dep_id',data["dep_id"]);
+    this.db("student").where('usn','ilike',id).update('sec_id',data["sec_id"]);
   }
 
   patch(id, data, params) {
