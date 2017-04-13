@@ -17,10 +17,8 @@ class Service {
 
   get(id, params) {
     return this.db.raw('SELECT c_id,name,takes_class_recurring.at_time FROM class_recurring INNER JOIN takes_class_recurring using (c_id)\
-     INNER JOIN student using (usn)WHERE usn like ? ORDER BY class_recurring.at_time;',[id])
+     INNER JOIN student using (usn)WHERE usn ilike ? ORDER BY class_recurring.at_time;',[id])
       .then((d)=>d.rows);
-
-    
   }
 
   create(data, params) {
