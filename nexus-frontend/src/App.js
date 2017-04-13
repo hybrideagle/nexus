@@ -15,6 +15,8 @@ import InstructorTimeTable from './instructor-time-table';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import superagent from 'superagent';
 
+import conn_string from './config'
+
 // Needed for onTouchTap
 injectTapEventPlugin();
 
@@ -23,7 +25,7 @@ console.log("app");
 class App extends Component {
   constructor(props){
     super(props);
-    this.app = feathers().configure(rest("http://192.168.43.84:3010").superagent(superagent));
+    this.app = feathers().configure(rest(conn_string).superagent(superagent));
   }
   render() {
     console.log(this.props.match);
